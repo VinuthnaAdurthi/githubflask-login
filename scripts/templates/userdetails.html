@@ -1,17 +1,20 @@
 {% extends 'bootstrap/base.html' %}
+
 {% block navbar %}
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">GitDub</a>
+				<a class="navbar-brand" href="#">Welcome !!</a>
 			</div>
 		</div>
 	</nav>
 {% endblock %}
 
 {% block content %}
+
 <div class="container">
-    <h4> <a href='/login'>Login to GITHUB</a></h4>
+    <p>Welcome {{userdetails['login']}}!</p>
+    <a href='/repos/{{access_token}}'>Get Repos</a>
 </div>
 
 {% endblock %}
