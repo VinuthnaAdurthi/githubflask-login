@@ -1,0 +1,36 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block navbar %}
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">GitRepos/Branches/{{ branch }}/files</a>
+			</div>
+		</div>
+	</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <p>User: {{ user }}</p>
+    <p>Repo: {{ repo }}</p>
+    <p>Branch: {{ branch }}</p>
+    <p>List of Files</p>
+    <ul>
+        {% for n in files %}
+            <li><a onclick="submitForm('fileForm{{ n.path }}')">{{ n.path }}</a></li>
+            <form method="post" id="fileForm{{ n.path }}" action="/filecontent">
+                <input type="hidden" name="url" value="{{ n.url }}"/>
+                <input type="hidden" name="path" value="{{ n.path }}"/>
+                <input type="hidden" name="access_token" value="{{ access_token }}"/>
+            </form>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    function submitForm(formName) {
+        document.getElementById(formName).submit();
+    }
+</script>
+{% endblock %}
